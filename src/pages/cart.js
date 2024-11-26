@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 import { useCart } from '../context/CartContext';
 
 const CartPage = () => {
@@ -17,7 +18,7 @@ const CartPage = () => {
           <CartList>
             {cart.map((item, index) => (
               <CartItem key={index}>
-                <img src={item.image} alt={item.name} />
+                <Image src={item.image} alt={item.name} width={80} height={80} />
                 <div>
                   <h3>{item.name}</h3>
                   <p>

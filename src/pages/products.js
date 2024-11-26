@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import Breadcrumb from '../components/Breadcrumb';
@@ -63,7 +64,13 @@ const ProductsPage = () => {
       <Grid>
         {filteredProducts.map((product) => (
           <ProductCard key={product.id}>
-            <img src={product.image} alt={product.name} />
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={200}
+              height={200}
+              style={{ objectFit: 'cover', borderBottom: '1px solid #ddd' }}
+            />
             <Details>
               <h3>{product.name}</h3>
               <p>
@@ -85,7 +92,9 @@ const ProductsPage = () => {
           </ProductCard>
         ))}
         {filteredProducts.length === 0 && (
-          <NoResults>No se encontraron productos para "{searchQuery}".</NoResults>
+          <NoResults>
+            No se encontraron productos para &quot;{searchQuery}&quot;.
+          </NoResults>
         )}
       </Grid>
     </Container>
@@ -158,13 +167,6 @@ const ProductCard = styled.div`
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
   }
 `;
 
